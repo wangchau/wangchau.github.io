@@ -254,6 +254,10 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <br>
+
+
+
+
                 <ul class="list-inline text-center">
                 
                 
@@ -307,6 +311,10 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="/js/blog.js"></script>
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
 
 <!-- async load function -->
 <script>
@@ -362,7 +370,22 @@
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src=""><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<img class="wechat-title-img" src="null">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
