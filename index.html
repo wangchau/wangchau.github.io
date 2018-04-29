@@ -94,14 +94,14 @@
 
                         
                         <li>
-                            <a href="/about/">about</a>
+                            <a href="/archives/">archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">archives</a>
+                            <a href="/about/">about</a>
                         </li>
                         
                     
@@ -181,18 +181,27 @@
 
 <div class="post-preview">
 
-    <a href="/2018/04/29/IoU/">
+    <a href="/2018/04/29/Frustum-PointNets-for-3D-Object-Detection-from-RGB-D-Data/">
         <h2 class="post-title">
-            IoU
+            Frustum PointNets for 3D Object Detection from RGB-D Data
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            重叠率交并比（Intersection-over-Union，IoU），目标检测中使用的一个概念，是产生的候选框（candidate bound）与原标记框（ground truth bound）的交叠率，即它们的交集与并集的比值。最理想情况是完全重叠，即比值为1。
+            描述一篇基于PointNet的点云分割
+PointNet是对局部进行分割，这篇文章将其应用在大范围的场景中。
+组成网络主要有三部分组成
 
-计算公式：
-IoU = \frac{area(C) \bigcap area(G)}{area(C) \bigcup are......
+Frustum Proposal
+3D Instance Segmenttation
+Amodal 3D Box Estimation
+
+
+细节Frustum Proposal
+先获取二维图像的mask，并得到它的分类。
+投影矩阵
+视锥（sensor的近平......
         </div>
     </a>
     <p class="post-meta">
@@ -205,16 +214,18 @@ IoU = \frac{area(C) \bigcap area(G)}{area(C) \bigcup are......
 
 <div class="post-preview">
 
-    <a href="/2018/04/29/hello-world/">
+    <a href="/2018/04/29/IoU/">
         <h2 class="post-title">
-            Hello World
+            IoU
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu......
+            重叠率交并比（Intersection-over-Union，IoU），目标检测中使用的一个概念，是产生的候选框（candidate bound）与原标记框（ground truth bound）的交叠率，即它们的交集与并集的比值。最理想情况是完全重叠，即比值为1。
+
+计算公式：
+IoU = \frac{area(C) \bigcap area(G)}{area(C) \bigcup are......
         </div>
     </a>
     <p class="post-meta">
@@ -256,7 +267,19 @@ Qu......
                     <div class="tags">
                         
                             
-                            <a href="/tags/#CV" title="CV" rel="1">CV</a>
+                            <a href="/tags/#CV" title="CV" rel="2">CV</a>
+                            
+                        
+                            
+                            <a href="/tags/#3D" title="3D" rel="1">3D</a>
+                            
+                        
+                            
+                            <a href="/tags/#语义分割" title="语义分割" rel="1">语义分割</a>
+                            
+                        
+                            
+                            <a href="/tags/#论文笔记" title="论文笔记" rel="1">论文笔记</a>
                             
                         
                     </div>

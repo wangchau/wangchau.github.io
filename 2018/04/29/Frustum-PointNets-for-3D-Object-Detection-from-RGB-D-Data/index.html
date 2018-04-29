@@ -13,11 +13,11 @@
 
     <title>
         
-          ZHOU&#39;s Blog
+          Frustum PointNets for 3D Object Detection from RGB-D Data - ZHOU&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="wangchau.github.io/archive/2018/04/">
+    <link rel="canonical" href="wangchau.github.io/2018/04/29/Frustum-PointNets-for-3D-Object-Detection-from-RGB-D-Data/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -144,7 +144,201 @@
 
 
     <!-- Main Content -->
-    <!-- Default Archive layout, we use archives instead. -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="wangchau.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/beijing.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#CV" title="CV">CV</a>
+                        
+                          <a class="tag" href="/tags/#3D" title="3D">3D</a>
+                        
+                          <a class="tag" href="/tags/#语义分割" title="语义分割">语义分割</a>
+                        
+                          <a class="tag" href="/tags/#论文笔记" title="论文笔记">论文笔记</a>
+                        
+                    </div>
+                    <h1>Frustum PointNets for 3D Object Detection from RGB-D Data</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by wangzhou on
+                        2018-04-29
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>一篇基于PointNet的点云分割</p>
+<p>PointNet是对局部进行分割，这篇文章将其应用在大范围的场景中。</p>
+<h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><p>网络主要有三部分组成</p>
+<ul>
+<li>Frustum Proposal</li>
+<li>3D Instance Segmenttation</li>
+<li>Amodal 3D Box Estimation</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/4e97d12e23c27ef2e4517e9148b33c7f/xmlnote/WEBRESOURCEd7905bb25b2b6244203023009f7e410a/1039" alt="image"></p>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><h3 id="Frustum-Proposal"><a href="#Frustum-Proposal" class="headerlink" title="Frustum Proposal"></a>Frustum Proposal</h3><ul>
+<li>先获取二维图像的mask，并得到它的分类。</li>
+<li>投影矩阵</li>
+<li>视锥（sensor的近平面和远平面）</li>
+<li>收集点云</li>
+<li>由于视锥方向不同，将其归一化</li>
+<li>中心轴与像平面垂直</li>
+</ul>
+<p>在这里不直接对KITTI上的数据训练，采用FPN模型，在ImageNet或者COCO上先对权值训练，再应用在KITTI数据集的二维图像检测上。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/4e97d12e23c27ef2e4517e9148b33c7f/xmlnote/WEBRESOURCE3365d2f9d52e392fe53d6211dc973728/1036" alt="image"></p>
+<h3 id="3D实例分割"><a href="#3D实例分割" class="headerlink" title="3D实例分割"></a>3D实例分割</h3><p>由于遮挡和嘈杂的背景直接回归的效果并不好，所以直接对点云进行实例分割，而不是对深度图或者2D图进行分割。</p>
+<p><img src="https://note.youdao.com/yws/public/resource/4e97d12e23c27ef2e4517e9148b33c7f/xmlnote/WEBRESOURCEdd8fc910843156d5e42fd913e20ecd07/1040" alt="image"></p>
+<p>这里用的PointNet</p>
+<p>用质心减去XYZ值，得到点云的局部坐标</p>
+<h3 id="Amodal-3D-Box-Estimation"><a href="#Amodal-3D-Box-Estimation" class="headerlink" title="Amodal 3D Box Estimation"></a>Amodal 3D Box Estimation</h3><p>定义了中心坐标（<code>$c_x, c_y, c_z$</code>）和大小（h, w, l)和方向角 <code>$\theta$</code> 来描述bounding box，在这只有航向角 <code>$\theta$</code>。</p>
+<p>在得到bounding box的大小和角度的时候，用了Faster r-cnn: Towards real-time object detection with region proposal networks和3d bounding box estimation using deep learning and geometry中的方法。</p>
+<p>在得到中心的时候用的T-Net。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/04/29/IoU/" data-toggle="tooltip" data-placement="top" title="IoU">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#CV" title="CV">CV</a>
+                        
+                          <a class="tag" href="/tags/#3D" title="3D">3D</a>
+                        
+                          <a class="tag" href="/tags/#语义分割" title="语义分割">语义分割</a>
+                        
+                          <a class="tag" href="/tags/#论文笔记" title="论文笔记">论文笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "huxblog";
+    var disqus_identifier = "wangchau.github.io/2018/04/29/Frustum-PointNets-for-3D-Object-Detection-from-RGB-D-Data/";
+    var disqus_url = "wangchau.github.io/2018/04/29/Frustum-PointNets-for-3D-Object-Detection-from-RGB-D-Data/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
 
     <!-- Footer -->
     <!-- Footer -->
