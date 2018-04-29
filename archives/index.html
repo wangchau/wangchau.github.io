@@ -13,11 +13,11 @@
 
     <title>
         
-          IoU - ZHOU&#39;s Blog
+          archives - ZHOU&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="wangchau.github.io/2018/04/29/IoU/">
+    <link rel="canonical" href="wangchau.github.io/archives/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -144,166 +144,79 @@
 
 
     <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!-- <img src="wangchau.github.io/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/11.png')
-    }
-</style>
-<header class="intro-header" >
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/11.png')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#CV" title="CV">CV</a>
-                        
-                    </div>
-                    <h1>IoU</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by wangzhou on
-                        2018-04-29
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>archives</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">A Small Master</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- 归档列表 -->
 
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+            
 
-                <h1 id="重叠率"><a href="#重叠率" class="headerlink" title="重叠率"></a>重叠率</h1><p>交并比（Intersection-over-Union，IoU），目标检测中使用的一个概念，是产生的候选框（candidate bound）与原标记框（ground truth bound）的交叠率，即它们的交集与并集的比值。最理想情况是完全重叠，即比值为1。</p>
-<p><img src="https://www.lao-wang.com/wp-content/uploads/2017/07/iou-300x163.png" alt="image"></p>
-<p>计算公式：</p>
-<script type="math/tex; mode=display">IoU = \frac{area(C) \bigcap area(G)}{area(C) \bigcup area(G)}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculateIoU</span><span class="params">(candidateBound, groundTruthBound)</span>:</span></span><br><span class="line">    cx1 = candidateBound[<span class="number">0</span>]</span><br><span class="line">    cy1 = candidateBound[<span class="number">1</span>]</span><br><span class="line">    cx2 = candidateBound[<span class="number">2</span>]</span><br><span class="line">    cy2 = candidateBound[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    gx1 = groundTruthBound[<span class="number">0</span>]</span><br><span class="line">    gy1 = groundTruthBound[<span class="number">1</span>]</span><br><span class="line">    gx2 = groundTruthBound[<span class="number">2</span>]</span><br><span class="line">    gy2 = groundTruthBound[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    carea = (cx2 - cx1) * (cy2 - cy1) <span class="comment">#C的面积</span></span><br><span class="line">    garea = (gx2 - gx1) * (gy2 - gy1) <span class="comment">#G的面积</span></span><br><span class="line"></span><br><span class="line">    x1 = max(cx1, gx1)</span><br><span class="line">    y1 = max(cy1, gy1)</span><br><span class="line">    x2 = min(cx2, gx2)</span><br><span class="line">    y2 = min(cy2, gy2)</span><br><span class="line">    w = max(<span class="number">0</span>, x2 - x1)</span><br><span class="line">    h = max(<span class="number">0</span>, y2 - y1)</span><br><span class="line">    area = w * h <span class="comment">#C∩G的面积</span></span><br><span class="line"></span><br><span class="line">    iou = area / (carea + garea - area)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bb_intersection_over_union</span><span class="params">(boxA, boxB)</span>:</span></span><br><span class="line">    <span class="comment"># determine the (x, y)-coordinates of the intersection rectangle</span></span><br><span class="line">    xA = max(boxA[<span class="number">0</span>], boxB[<span class="number">0</span>])</span><br><span class="line">    yA = max(boxA[<span class="number">1</span>], boxB[<span class="number">1</span>])</span><br><span class="line">    xB = min(boxA[<span class="number">2</span>], boxB[<span class="number">2</span>])</span><br><span class="line">    yB = min(boxA[<span class="number">3</span>], boxB[<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># compute the area of intersection rectangle</span></span><br><span class="line">    interArea = (xB - xA + <span class="number">1</span>) * (yB - yA + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># compute the area of both the prediction and ground-truth</span></span><br><span class="line">    <span class="comment"># rectangles</span></span><br><span class="line">    boxAArea = (boxA[<span class="number">2</span>] - boxA[<span class="number">0</span>] + <span class="number">1</span>) * (boxA[<span class="number">3</span>] - boxA[<span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line">    boxBArea = (boxB[<span class="number">2</span>] - boxB[<span class="number">0</span>] + <span class="number">1</span>) * (boxB[<span class="number">3</span>] - boxB[<span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># compute the intersection over union by taking the intersection</span></span><br><span class="line">    <span class="comment"># area and dividing it by the sum of prediction + ground-truth</span></span><br><span class="line">    <span class="comment"># areas - the interesection area</span></span><br><span class="line">    iou = interArea / float(boxAArea + boxBArea - interArea)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return the intersection over union value</span></span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure>
+             <!-- 归档列表 -->
 
-                <hr>
 
+
+            
+            <div class="one-tag-list">
+                <span class="fa fa-calendar-times-o listing-seperator" id="2018">
+                    <span class="tag-text">2018</span>
+                </span>
+                <ul>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <li >
+                    04-29
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <a href="/2018/04/29/IoU/" style="color: #0085a1">
+                        <span>
+                            IoU
+                        </span>
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </li>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <li >
+                    04-29
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <a href="/2018/04/29/hello-world/" style="color: #0085a1">
+                        <span>
+                            Hello World
+                        </span>
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </li>
                 
 
-                <ul class="pager">
-                    
-                    
-                        <li class="next">
-                            <a href="/2018/04/29/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">Next Post &rarr;</a>
-                        </li>
-                    
                 </ul>
-
-                
-
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
-
             </div>
-    <!-- Side Catalog Container -->
-        
+            
 
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#CV" title="CV">CV</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
 
         </div>
     </div>
-</article>
-
-
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "huxblog";
-    var disqus_identifier = "wangchau.github.io/2018/04/29/IoU/";
-    var disqus_url = "wangchau.github.io/2018/04/29/IoU/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+</div>
 
 
     <!-- Footer -->
