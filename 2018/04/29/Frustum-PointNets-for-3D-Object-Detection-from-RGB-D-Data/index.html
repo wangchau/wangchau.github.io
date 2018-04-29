@@ -202,7 +202,7 @@
 <li>3D Instance Segmenttation</li>
 <li>Amodal 3D Box Estimation</li>
 </ul>
-<p><img src="https://note.youdao.com/yws/public/resource/4e97d12e23c27ef2e4517e9148b33c7f/xmlnote/WEBRESOURCEd7905bb25b2b6244203023009f7e410a/1039" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/8a741a078ace8042db72c9a0bd114112/xmlnote/WEBRESOURCE90d088556d2b3d22e8473369b20905b1/1233" alt="image"></p>
 <h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><h3 id="Frustum-Proposal"><a href="#Frustum-Proposal" class="headerlink" title="Frustum Proposal"></a>Frustum Proposal</h3><ul>
 <li>先获取二维图像的mask，并得到它的分类。</li>
 <li>投影矩阵</li>
@@ -212,12 +212,12 @@
 <li>中心轴与像平面垂直</li>
 </ul>
 <p>在这里不直接对KITTI上的数据训练，采用FPN模型，在ImageNet或者COCO上先对权值训练，再应用在KITTI数据集的二维图像检测上。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/4e97d12e23c27ef2e4517e9148b33c7f/xmlnote/WEBRESOURCE3365d2f9d52e392fe53d6211dc973728/1036" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/8a741a078ace8042db72c9a0bd114112/xmlnote/WEBRESOURCEe9b8a24c7be2b623a8826746170b6615/1231" alt="image"></p>
 <h3 id="3D实例分割"><a href="#3D实例分割" class="headerlink" title="3D实例分割"></a>3D实例分割</h3><p>由于遮挡和嘈杂的背景直接回归的效果并不好，所以直接对点云进行实例分割，而不是对深度图或者2D图进行分割。</p>
-<p><img src="https://note.youdao.com/yws/public/resource/4e97d12e23c27ef2e4517e9148b33c7f/xmlnote/WEBRESOURCEdd8fc910843156d5e42fd913e20ecd07/1040" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/public/resource/8a741a078ace8042db72c9a0bd114112/xmlnote/WEBRESOURCE68386e71fbb4f7f571fe15e1b5017983/1232" alt="image"></p>
 <p>这里用的PointNet</p>
 <p>用质心减去XYZ值，得到点云的局部坐标</p>
-<h3 id="Amodal-3D-Box-Estimation"><a href="#Amodal-3D-Box-Estimation" class="headerlink" title="Amodal 3D Box Estimation"></a>Amodal 3D Box Estimation</h3><p>定义了中心坐标（<code>$c_x, c_y, c_z$</code>）和大小（h, w, l)和方向角 <code>$\theta$</code> 来描述bounding box，在这只有航向角 <code>$\theta$</code>。</p>
+<h3 id="Amodal-3D-Box-Estimation"><a href="#Amodal-3D-Box-Estimation" class="headerlink" title="Amodal 3D Box Estimation"></a>Amodal 3D Box Estimation</h3><p>定义了中心坐标（<script type="math/tex">c_x, c_y, c_z</script>）和大小（h, w, l)和方向角 <script type="math/tex">\theta</script>来描述bounding box，在这只有航向角 <script type="math/tex">\theta</script>。</p>
 <p>在得到bounding box的大小和角度的时候，用了Faster r-cnn: Towards real-time object detection with region proposal networks和3d bounding box estimation using deep learning and geometry中的方法。</p>
 <p>在得到中心的时候用的T-Net。</p>
 
