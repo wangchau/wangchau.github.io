@@ -5,14 +5,14 @@
 <p>这里的<script type="math/tex">\theta</script>是指未知参数，它属于参数空间；</p>
 <p>这里的<script type="math/tex">f(\textbf{x}|\theta)</script>是一个密度函数，特别地，它表示(给定)<script type="math/tex">\theta</script>下关于联合样本值<script type="math/tex">\textbf{x}</script>的联合密度函数。</p>
 <p>所以为了计算在一个数据点<script type="math/tex">x_i</script>处的似然函数<script type="math/tex">Pr(x|\theta)</script>，只需要估算在<script type="math/tex">x_i</script>出得密度函数。</p>
-<h3 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h3><p>而最大似然就是利用已知的样本结果，反推最有可能（最大概率）的参数集合<code>$\theta$</code>。</p>
-<p>如果每一个数据点都从分布中独立抽样，点的集合的似然函数<code>$Pr(x_{1..I}|\theta)$</code>就是独立似然的乘积。</p>
+<h3 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h3><p>而最大似然就是利用已知的样本结果，反推最有可能（最大概率）的参数集合<script type="math/tex">\theta</script>。</p>
+<p>如果每一个数据点都从分布中独立抽样，点的集合的似然函数<script type="math/tex">Pr(x_{1..I}|\theta)</script>就是独立似然的乘积。</p>
 <p>最大似然估计的公式：</p>
 <script type="math/tex; mode=display">\hat{\theta} = \underset{\theta}{argmax} [Pr(x_{1...I}|\theta)] =   \underset{\theta}{argmax} [ \prod_{i=1}^{I}Pr(x_i|\theta) ]</script><p>在实际中，为了分析，定义了对数似然函数：</p>
 <script type="math/tex; mode=display">H(\theta) = lnl(\theta)</script><script type="math/tex; mode=display">\hat{\theta} = \underset{\theta}{argmax} [H(\theta)] = \underset{\theta}{argmax}[  ln(l(\theta))]=  \underset{\theta}{argmax} [ \prod_{i=1}^{I}Pr(x_i|\theta) ]</script><ul>
 <li><p>未知参数只有一个（θ为标量）</p>
 <p>  在似然函数满足连续、可微的正则条件下，极大似然估计量是下面微分方程的解：</p>
-<script type="math/tex; mode=display">\frac{dl(\theta)}{d\theta} = 0$$或者等价于 $$\frac{dH(\theta)}{d\theta}=\frac{d ln l(\theta)}{d\theta} = 0</script></li>
+<script type="math/tex; mode=display">\frac{dl(\theta)}{d\theta} = 0 $$ 或者等价于 $$ \frac{dH(\theta)}{d\theta}=\frac{d ln l(\theta)}{d\theta} = 0</script></li>
 <li><p>未知参数有多个（θ为向量）</p>
 <p>  则θ可表示为具有S个分量的未知向量：</p>
 <script type="math/tex; mode=display">\theta = [\theta_1 , \theta_2 , ... , \theta_s]^T</script><p>  记梯度算子：</p>
